@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('cover_photo')->nullable();
+            $table->string('profile_photo')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->uuid('created_by')->nullable();
