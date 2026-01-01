@@ -7,6 +7,7 @@ use App\Http\Requests\Exam\BulkModerateRequest;
 use App\Http\Requests\Exam\ModerateMarkRequest;
 use App\Http\Requests\Exam\StoreStudentMarksRequest;
 use App\Http\Resources\Exam\StudentMarkResource;
+use App\Jobs\CalculateGradesJob;
 use App\Models\ExamSubject;
 use App\Models\StudentMark;
 use App\Services\Grading\GradingEngine;
@@ -184,11 +185,29 @@ class StudentMarkController extends Controller
 
     public function calculateGrades(Request $request, ExamSubject $examSubject): JsonResponse
     {
-        $validated = $request->validate([
-            'grading_system_id' => ['required', 'uuid', 'exists:grading_systems,id'],
+        $request->validate([
+            'async' => ['boolean'],
         ]);
 
-        $gradingSystem = GradingSystem::with('gradeScales')->findOrFail($validated['grading_system_id']);
+        if ($request->boolean('async', false)) {
+            CalculateGradesJob::dispatch($examSubject->id);
+
+            return response()->json([
+                'message' => 'Grade calculation job has been queued.',
+            ]);
+        }
+
+        $gradingSystem = GradingSystem::where('school_id', $examSubject->exam->school_id)
+            ->where('is_default', true)
+            ->with('gradeScales')
+            ->first();
+
+        if (!$gradingSystem) {
+            return response()->json([
+                'message' => 'No default grading system found for this school.',
+            ], 422);
+        }
+
         $engine = new GradingEngine($gradingSystem);
 
         $updated = 0;

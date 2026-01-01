@@ -82,6 +82,7 @@ class School extends Model implements HasMedia
             'grading' => true,
             'exams' => true,
             'reports' => true,
+            'attendance' => true,
             'admissions' => false,
             'fees' => false,
             'timetables' => false,

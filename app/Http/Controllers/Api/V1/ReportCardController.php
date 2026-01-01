@@ -8,6 +8,7 @@ use App\Http\Requests\Report\BulkPublishReportCardsRequest;
 use App\Http\Requests\Report\GenerateReportCardRequest;
 use App\Http\Requests\Report\UpdateReportCardRequest;
 use App\Http\Resources\Report\ReportCardResource;
+use App\Jobs\GenerateReportCardsJob;
 use App\Models\Exam;
 use App\Models\ReportCard;
 use App\Models\ReportCardSubject;
@@ -15,10 +16,12 @@ use App\Models\Student;
 use App\Models\StudentEnrollment;
 use App\Services\Grading\GradingEngine;
 use App\Models\GradingSystem;
+use App\Services\PdfService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @group Report Cards
@@ -58,6 +61,29 @@ class ReportCardController extends Controller
     public function generate(GenerateReportCardRequest $request): JsonResponse
     {
         $validated = $request->validated();
+
+        // Support async generation via job
+        if ($request->boolean('async', false)) {
+            $exam = Exam::where('academic_year_id', $validated['academic_year_id'])
+                ->where('term_id', $validated['term_id'])
+                ->whereIn('status', [Exam::STATUS_COMPLETED, Exam::STATUS_PUBLISHED])
+                ->first();
+
+            if (!$exam) {
+                return response()->json(['message' => 'No completed exam found for this term.'], 422);
+            }
+
+            GenerateReportCardsJob::dispatch(
+                $exam->id,
+                $validated['grading_system_id'],
+                $validated['class_id'],
+                $validated['stream_id'] ?? null
+            );
+
+            return response()->json([
+                'message' => 'Report card generation job has been queued.',
+            ]);
+        }
 
         $gradingSystem = GradingSystem::with('gradeScales')->findOrFail($validated['grading_system_id']);
         $engine = new GradingEngine($gradingSystem);
@@ -289,5 +315,52 @@ class ReportCardController extends Controller
             ->get();
 
         return ReportCardResource::collection($reportCards);
+    }
+
+    public function downloadPdf(ReportCard $reportCard, PdfService $pdfService): Response
+    {
+        $pdf = $pdfService->generateReportCard($reportCard);
+        $filename = 'report-card-' . $reportCard->student->admission_number . '-' . now()->format('Y-m-d') . '.pdf';
+
+        return $pdf->download($filename);
+    }
+
+    public function downloadBulkPdf(Request $request, PdfService $pdfService): Response
+    {
+        $request->validate([
+            'report_card_ids' => ['required', 'array', 'min:1'],
+            'report_card_ids.*' => ['uuid', 'exists:report_cards,id'],
+        ]);
+
+        $reportCards = ReportCard::whereIn('id', $request->report_card_ids)->get();
+        $pdf = $pdfService->generateBulkReportCards($reportCards);
+
+        return $pdf->download('report-cards-bulk-' . now()->format('Y-m-d') . '.pdf');
+    }
+
+    public function downloadTranscript(Student $student, Request $request, PdfService $pdfService): Response
+    {
+        $academicYearId = $request->input('academic_year_id');
+        $pdf = $pdfService->generateTranscript($student, $academicYearId);
+        $filename = 'transcript-' . $student->admission_number . '-' . now()->format('Y-m-d') . '.pdf';
+
+        return $pdf->download($filename);
+    }
+
+    public function downloadClassSummary(Request $request, PdfService $pdfService): Response
+    {
+        $request->validate([
+            'exam_id' => ['required', 'uuid', 'exists:exams,id'],
+            'class_id' => ['required', 'uuid', 'exists:classes,id'],
+            'stream_id' => ['nullable', 'uuid', 'exists:streams,id'],
+        ]);
+
+        $pdf = $pdfService->generateClassReportSummary(
+            $request->exam_id,
+            $request->class_id,
+            $request->stream_id
+        );
+
+        return $pdf->download('class-summary-' . now()->format('Y-m-d') . '.pdf');
     }
 }

@@ -15,6 +15,8 @@ class User extends Authenticatable implements HasMedia
 {
     use HasFactory, Notifiable, HasApiTokens, BaseModel, InteractsWithMedia, HasRoles;
 
+    protected string $guard_name = 'sanctum';
+
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
     public const STATUS_SUSPENDED = 'suspended';
@@ -100,5 +102,15 @@ class User extends Authenticatable implements HasMedia
     public function scopeForSchool($query, string $schoolId)
     {
         return $query->where('school_id', $schoolId);
+    }
+
+    public function createdStudents()
+    {
+        return $this->hasMany(Student::class, 'created_by');
+    }
+
+    public function updatedStudents()
+    {
+        return $this->hasMany(Student::class, 'updated_by');
     }
 }
