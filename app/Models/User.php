@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -11,16 +11,14 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements InteractsWithMedia
+class User extends Authenticatable implements HasMedia
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens, BaseModel, HasMedia, HasRoles;
+    use HasFactory, Notifiable, HasApiTokens, BaseModel, InteractsWithMedia, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_SUSPENDED = 'suspended';
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -31,29 +29,25 @@ class User extends Authenticatable implements InteractsWithMedia
         'phone_number',
         'password',
         'school_id',
-        'cover_photo',
-        'profile_photo',
+        'status',
+        'last_login_at',
+        'email_verified_at',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+    protected $attributes = [
+        'status' => self::STATUS_ACTIVE,
+    ];
+
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
@@ -65,5 +59,46 @@ class User extends Authenticatable implements InteractsWithMedia
 
         $this->addMediaCollection('profile_photo')
             ->singleFile();
+    }
+
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        $parts = array_filter([
+            $this->first_name,
+            $this->middle_name,
+            $this->last_name,
+        ]);
+
+        return implode(' ', $parts);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->school_id === null && $this->hasRole('super-admin');
+    }
+
+    public function isSchoolAdmin(): bool
+    {
+        return $this->hasRole('school-admin');
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === self::STATUS_ACTIVE;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function scopeForSchool($query, string $schoolId)
+    {
+        return $query->where('school_id', $schoolId);
     }
 }

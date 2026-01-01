@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('cover_photo')->nullable();
-            $table->string('profile_photo')->nullable();
+            $table->enum('status', ['active', 'inactive', 'suspended'])->default('active');
+            $table->timestamp('last_login_at')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->uuid('created_by')->nullable();
@@ -32,6 +32,8 @@ return new class extends Migration
             $table->uuid('deleted_by')->nullable();
             $table->timestamps();
 
+            $table->index('status');
+            $table->index('school_id');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

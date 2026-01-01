@@ -3,23 +3,34 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            RolesAndPermissionsSeeder::class,
+            GradingSystemSeeder::class,
         ]);
+
+        // Create Super Admin user
+        $superAdmin = User::factory()->create([
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
+            'username' => 'superadmin',
+            'email' => 'admin@sukulu.com',
+            'password' => bcrypt('password'),
+            'school_id' => null,
+        ]);
+        
+        // Use sanctum guard for role assignment
+        $role = \App\Models\Role::where('name', 'super-admin')->where('guard_name', 'sanctum')->first();
+        if ($role) {
+            $superAdmin->roles()->attach($role->id);
+        }
     }
 }
