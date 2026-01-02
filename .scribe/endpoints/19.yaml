@@ -1,0 +1,381 @@
+name: 'Time Periods'
+description: |-
+
+  APIs for managing school time periods
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/time-periods
+    metadata:
+      custom: []
+      groupName: 'Time Periods'
+      groupDescription: |-
+
+        APIs for managing school time periods
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/time-periods
+    metadata:
+      custom: []
+      groupName: 'Time Periods'
+      groupDescription: |-
+
+        APIs for managing school time periods
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      start_time:
+        custom: []
+        name: start_time
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: true
+        example: '05:56'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      end_time:
+        custom: []
+        name: end_time
+        description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+        required: true
+        example: '2052-01-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: ''
+        required: false
+        example: assembly
+        type: string
+        enumValues:
+          - lesson
+          - break
+          - assembly
+          - lunch
+          - other
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      sort_order:
+        custom: []
+        name: sort_order
+        description: 'Must be at least 0.'
+        required: false
+        example: 39
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: b
+      start_time: '05:56'
+      end_time: '2052-01-26'
+      type: assembly
+      sort_order: 39
+      is_active: false
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/time-periods/{id}'
+    metadata:
+      custom: []
+      groupName: 'Time Periods'
+      groupDescription: |-
+
+        APIs for managing school time periods
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the time period.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/time-periods/{id}'
+    metadata:
+      custom: []
+      groupName: 'Time Periods'
+      groupDescription: |-
+
+        APIs for managing school time periods
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the time period.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      start_time:
+        custom: []
+        name: start_time
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: true
+        example: '05:56'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      end_time:
+        custom: []
+        name: end_time
+        description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+        required: true
+        example: '2052-01-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: ''
+        required: false
+        example: assembly
+        type: string
+        enumValues:
+          - lesson
+          - break
+          - assembly
+          - lunch
+          - other
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      sort_order:
+        custom: []
+        name: sort_order
+        description: 'Must be at least 0.'
+        required: false
+        example: 39
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: b
+      start_time: '05:56'
+      end_time: '2052-01-26'
+      type: assembly
+      sort_order: 39
+      is_active: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/time-periods/{id}'
+    metadata:
+      custom: []
+      groupName: 'Time Periods'
+      groupDescription: |-
+
+        APIs for managing school time periods
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the time period.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

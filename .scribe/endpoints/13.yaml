@@ -1,0 +1,535 @@
+name: 'Student Marks'
+description: |-
+
+  APIs for managing student marks and moderation
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/exam-subjects/{exam_subject_id}/marks'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      exam_subject_id:
+        custom: []
+        name: exam_subject_id
+        description: 'The ID of the exam subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      exam_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exam-subjects/{exam_subject_id}/marks'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      exam_subject_id:
+        custom: []
+        name: exam_subject_id
+        description: 'The ID of the exam subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      exam_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      marks:
+        custom: []
+        name: marks
+        description: 'Must have at least 1 items.'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'marks[].student_id':
+        custom: []
+        name: 'marks[].student_id'
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the students table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'marks[].score':
+        custom: []
+        name: 'marks[].score'
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: false
+        example: 7
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'marks[].is_absent':
+        custom: []
+        name: 'marks[].is_absent'
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'marks[].absent_reason':
+        custom: []
+        name: 'marks[].absent_reason'
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: z
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'marks[].remarks':
+        custom: []
+        name: 'marks[].remarks'
+        description: 'Must not be greater than 500 characters.'
+        required: false
+        example: m
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      marks:
+        -
+          student_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+          score: 7
+          is_absent: false
+          absent_reason: z
+          remarks: m
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exam-subjects/{exam_subject_id}/marks/submit'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      exam_subject_id:
+        custom: []
+        name: exam_subject_id
+        description: 'The ID of the exam subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      exam_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exam-subjects/{exam_subject_id}/marks/bulk-moderate'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      exam_subject_id:
+        custom: []
+        name: exam_subject_id
+        description: 'The ID of the exam subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      exam_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      moderations:
+        custom: []
+        name: moderations
+        description: 'Must have at least 1 items.'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'moderations[].student_mark_id':
+        custom: []
+        name: 'moderations[].student_mark_id'
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the student_marks table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'moderations[].score':
+        custom: []
+        name: 'moderations[].score'
+        description: 'Must be at least 0.'
+        required: true
+        example: 84
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'moderations[].reason':
+        custom: []
+        name: 'moderations[].reason'
+        description: 'Must not be greater than 1000 characters.'
+        required: true
+        example: z
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      moderations:
+        -
+          student_mark_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+          score: 84
+          reason: z
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exam-subjects/{exam_subject_id}/marks/approve'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      exam_subject_id:
+        custom: []
+        name: exam_subject_id
+        description: 'The ID of the exam subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      exam_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exam-subjects/{exam_subject_id}/marks/lock'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      exam_subject_id:
+        custom: []
+        name: exam_subject_id
+        description: 'The ID of the exam subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      exam_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exam-subjects/{exam_subject_id}/marks/calculate-grades'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      exam_subject_id:
+        custom: []
+        name: exam_subject_id
+        description: 'The ID of the exam subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      exam_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      async:
+        custom: []
+        name: async
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      async: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/student-marks/{student_mark_id}/moderate'
+    metadata:
+      custom: []
+      groupName: 'Student Marks'
+      groupDescription: |-
+
+        APIs for managing student marks and moderation
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_mark_id:
+        custom: []
+        name: student_mark_id
+        description: 'The ID of the student mark.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_mark_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      score:
+        custom: []
+        name: score
+        description: 'Must be at least 0.'
+        required: true
+        example: 27
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      reason:
+        custom: []
+        name: reason
+        description: 'Must not be greater than 1000 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      score: 27
+      reason: 'n'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

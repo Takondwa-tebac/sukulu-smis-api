@@ -1,0 +1,538 @@
+name: 'Academic Structure - Class Subjects'
+description: |-
+
+  APIs for assigning subjects to classes and managing subject-teacher assignments
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/classes/{class_id}/subjects'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      class_id:
+        custom: []
+        name: class_id
+        description: 'The ID of the class.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      class_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/class-subjects/bulk-assign
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      class_id:
+        custom: []
+        name: class_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the classes table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      subject_ids:
+        custom: []
+        name: subject_ids
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the subjects table.'
+        required: false
+        example:
+          - 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      class_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      subject_ids:
+        - 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/class-subjects/{class_subject_id}/assign-teacher'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      class_subject_id:
+        custom: []
+        name: class_subject_id
+        description: 'The ID of the class subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      class_subject_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      teacher_id:
+        custom: []
+        name: teacher_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the users table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      teacher_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/class-subjects
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List class-subject assignments'
+      description: 'Get a paginated list of subject assignments to classes.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      class_id:
+        custom: []
+        name: class_id
+        description: 'uuid Filter by class ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      subject_id:
+        custom: []
+        name: subject_id
+        description: 'uuid Filter by subject ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      is_compulsory:
+        custom: []
+        name: is_compulsory
+        description: 'Filter by compulsory status.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Items per page. Default: 15.'
+        required: false
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      class_id: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+      subject_id: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+      is_compulsory: true
+      per_page: 20
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data": [], "links": {}, "meta": {}}'
+        headers: []
+        description: Success
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/class-subjects
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      class_id:
+        custom: []
+        name: class_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the classes table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      subject_id:
+        custom: []
+        name: subject_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the subjects table.'
+        required: true
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      teacher_id:
+        custom: []
+        name: teacher_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the users table.'
+        required: false
+        example: 977e5426-8d13-3824-86aa-b092f8ae52c5
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_compulsory:
+        custom: []
+        name: is_compulsory
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      periods_per_week:
+        custom: []
+        name: periods_per_week
+        description: 'Must be at least 1. Must not be greater than 20.'
+        required: false
+        example: 13
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      class_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      subject_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+      teacher_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
+      is_compulsory: false
+      periods_per_week: 13
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/class-subjects/{id}'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the class subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/class-subjects/{id}'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the class subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      teacher_id:
+        custom: []
+        name: teacher_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the users table.'
+        required: false
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_compulsory:
+        custom: []
+        name: is_compulsory
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      periods_per_week:
+        custom: []
+        name: periods_per_week
+        description: 'Must be at least 1. Must not be greater than 20.'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      teacher_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      is_compulsory: false
+      periods_per_week: 7
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/class-subjects/{id}'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Class Subjects'
+      groupDescription: |-
+
+        APIs for assigning subjects to classes and managing subject-teacher assignments
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the class subject.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

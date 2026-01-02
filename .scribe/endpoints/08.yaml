@@ -1,0 +1,379 @@
+name: Students
+description: |-
+
+  APIs for managing students
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/students/{student_id}/guardians'
+    metadata:
+      custom: []
+      groupName: Students
+      groupDescription: |-
+
+        APIs for managing students
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      guardian_id:
+        custom: []
+        name: guardian_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the guardians table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      relationship:
+        custom: []
+        name: relationship
+        description: 'Must not be greater than 50 characters.'
+        required: true
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_primary:
+        custom: []
+        name: is_primary
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_emergency_contact:
+        custom: []
+        name: is_emergency_contact
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      guardian_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      relationship: g
+      is_primary: true
+      is_emergency_contact: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/students/{student_id}/guardians/{guardian}'
+    metadata:
+      custom: []
+      groupName: Students
+      groupDescription: |-
+
+        APIs for managing students
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      guardian:
+        custom: []
+        name: guardian
+        description: 'The guardian.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+      guardian: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/students/{student_id}/enroll'
+    metadata:
+      custom: []
+      groupName: Students
+      groupDescription: |-
+
+        APIs for managing students
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      academic_year_id:
+        custom: []
+        name: academic_year_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the academic_years table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      class_id:
+        custom: []
+        name: class_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the classes table.'
+        required: true
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream_id:
+        custom: []
+        name: stream_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the streams table.'
+        required: false
+        example: 977e5426-8d13-3824-86aa-b092f8ae52c5
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      academic_year_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      class_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+      stream_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/students
+    metadata:
+      custom: []
+      groupName: Students
+      groupDescription: |-
+
+        APIs for managing students
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/students/{id}'
+    metadata:
+      custom: []
+      groupName: Students
+      groupDescription: |-
+
+        APIs for managing students
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/students/{id}'
+    metadata:
+      custom: []
+      groupName: Students
+      groupDescription: |-
+
+        APIs for managing students
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

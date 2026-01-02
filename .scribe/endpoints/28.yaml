@@ -1,0 +1,463 @@
+name: 'File Uploads'
+description: |-
+
+  APIs for uploading files (photos, documents) using Spatie Media Library
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/uploads/students/{student_id}/photo'
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Upload student photo'
+      description: 'Upload a profile photo for a student.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      student:
+        custom: []
+        name: student
+        description: 'uuid required The student ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+      student: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      photo:
+        custom: []
+        name: photo
+        description: 'Image file (max 2MB).'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters: []
+    fileParameters:
+      photo: null
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"message": "Student photo uploaded successfully.", "url": "https://..."}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The photo must be an image."}'
+        headers: []
+        description: 'Validation Error'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/uploads/students/{student_id}/documents'
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      document:
+        custom: []
+        name: document
+        description: 'Must be a file. Must not be greater than 5120 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      document_type:
+        custom: []
+        name: document_type
+        description: ''
+        required: true
+        example: other
+        type: string
+        enumValues:
+          - birth_certificate
+          - transfer_letter
+          - medical_record
+          - other
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      document_type: other
+    fileParameters:
+      document: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/uploads/students/{student_id}/documents'
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/uploads/students/{student_id}/documents/{mediaId}'
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      mediaId:
+        custom: []
+        name: mediaId
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+      mediaId: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/uploads/profile-photo
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      photo:
+        custom: []
+        name: photo
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters: []
+    fileParameters:
+      photo: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/uploads/school/logo
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      logo:
+        custom: []
+        name: logo
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters: []
+    fileParameters:
+      logo: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/uploads/school/banner
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      banner:
+        custom: []
+        name: banner
+        description: 'Must be an image. Must not be greater than 5120 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters: []
+    fileParameters:
+      banner: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/uploads/school/documents
+    metadata:
+      custom: []
+      groupName: 'File Uploads'
+      groupDescription: |-
+
+        APIs for uploading files (photos, documents) using Spatie Media Library
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      document:
+        custom: []
+        name: document
+        description: 'Must be a file. Must not be greater than 10240 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      name:
+        custom: []
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: b
+    fileParameters:
+      document: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

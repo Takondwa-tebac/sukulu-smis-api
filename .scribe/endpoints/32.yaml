@@ -1,0 +1,832 @@
+name: 'Admin - User Management'
+description: |-
+
+  APIs for super-admin user management across all schools.
+  These endpoints require the `super-admin` role.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/admin/users
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List all users'
+      description: 'Get a paginated list of all users across all schools.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      school_id:
+        custom: []
+        name: school_id
+        description: 'uuid Filter by school.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      role:
+        custom: []
+        name: role
+        description: 'Filter by role name.'
+        required: false
+        example: school-admin
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: 'Filter by status (active, inactive).'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      search:
+        custom: []
+        name: search
+        description: 'Search by name or email.'
+        required: false
+        example: john
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Items per page. Default: 15.'
+        required: false
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      school_id: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+      role: school-admin
+      is_active: true
+      search: john
+      per_page: 20
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data": [], "links": {}, "meta": {}}'
+        headers: []
+        description: Success
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/admin/users
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      first_name:
+        custom: []
+        name: first_name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      last_name:
+        custom: []
+        name: last_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      email:
+        custom: []
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: ashly64@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      phone:
+        custom: []
+        name: phone
+        description: 'Must not be greater than 20 characters.'
+        required: false
+        example: vdljnikhwaykcmyu
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: false
+        example: 'Xaz<m5L[)~=NG5a'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      school_id:
+        custom: []
+        name: school_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the schools table.'
+        required: false
+        example: 6ebf23d5-4d7a-3c7c-9da4-0e13da370246
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      role:
+        custom: []
+        name: role
+        description: 'The <code>name</code> of an existing record in the roles table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      send_welcome_email:
+        custom: []
+        name: send_welcome_email
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      first_name: b
+      last_name: 'n'
+      email: ashly64@example.com
+      phone: vdljnikhwaykcmyu
+      password: 'Xaz<m5L[)~=NG5a'
+      school_id: 6ebf23d5-4d7a-3c7c-9da4-0e13da370246
+      role: architecto
+      is_active: true
+      send_welcome_email: false
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/admin/users/super-admins
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/admin/users/super-admins
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      email:
+        custom: []
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: zbailey@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: '-0pBNvYgxw'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: b
+      email: zbailey@example.net
+      password: '-0pBNvYgxw'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/users/{id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: d94fc804-956c-4295-98b0-d0474f7c69dc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: d94fc804-956c-4295-98b0-d0474f7c69dc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+    uri: 'api/v1/admin/users/{id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: d94fc804-956c-4295-98b0-d0474f7c69dc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: d94fc804-956c-4295-98b0-d0474f7c69dc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      email:
+        custom: []
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: false
+        example: zbailey@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      phone:
+        custom: []
+        name: phone
+        description: 'Must not be greater than 20 characters.'
+        required: false
+        example: iyvdljnikhwaykcm
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: false
+        example: '/kXaz<m5L[)~=NG5a:'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      school_id:
+        custom: []
+        name: school_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the schools table.'
+        required: false
+        example: ac9e0973-adfe-32df-ade4-9b9752e8c6ad
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      role:
+        custom: []
+        name: role
+        description: 'The <code>name</code> of an existing record in the roles table.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: b
+      email: zbailey@example.net
+      phone: iyvdljnikhwaykcm
+      password: '/kXaz<m5L[)~=NG5a:'
+      school_id: ac9e0973-adfe-32df-ade4-9b9752e8c6ad
+      role: architecto
+      is_active: false
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/admin/users/{id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: d94fc804-956c-4295-98b0-d0474f7c69dc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: d94fc804-956c-4295-98b0-d0474f7c69dc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/users/{user_id}/activate'
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: d94fc804-956c-4295-98b0-d0474f7c69dc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: d94fc804-956c-4295-98b0-d0474f7c69dc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/users/{user_id}/deactivate'
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: d94fc804-956c-4295-98b0-d0474f7c69dc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: d94fc804-956c-4295-98b0-d0474f7c69dc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/users/{user_id}/assign-role'
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: d94fc804-956c-4295-98b0-d0474f7c69dc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: d94fc804-956c-4295-98b0-d0474f7c69dc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      role:
+        custom: []
+        name: role
+        description: 'The <code>name</code> of an existing record in the roles table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      role: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/users/{user_id}/reset-password'
+    metadata:
+      custom: []
+      groupName: 'Admin - User Management'
+      groupDescription: |-
+
+        APIs for super-admin user management across all schools.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reset user password'
+      description: "Admin can reset a user's password and optionally send them a notification."
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: d94fc804-956c-4295-98b0-d0474f7c69dc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      user:
+        custom: []
+        name: user
+        description: 'uuid required The user ID.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: d94fc804-956c-4295-98b0-d0474f7c69dc
+      user: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      password:
+        custom: []
+        name: password
+        description: 'New password (auto-generated if not provided).'
+        required: false
+        example: '|]|{+-'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      notify:
+        custom: []
+        name: notify
+        description: 'Send password reset notification. Default: true.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      password: '|]|{+-'
+      notify: false
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"message": "Password reset successfully.", "temporary_password": "abc123"}'
+        headers: []
+        description: Success
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

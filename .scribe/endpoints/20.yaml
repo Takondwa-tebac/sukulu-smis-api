@@ -1,0 +1,718 @@
+name: Timetables
+description: |-
+
+  APIs for managing class timetables
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/timetables/{timetable_id}/activate'
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        custom: []
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      timetable_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/timetables/{timetable_id}/slots'
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        custom: []
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      timetable_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      slots:
+        custom: []
+        name: slots
+        description: 'Must have at least 1 items.'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'slots[].time_period_id':
+        custom: []
+        name: 'slots[].time_period_id'
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the time_periods table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'slots[].day_of_week':
+        custom: []
+        name: 'slots[].day_of_week'
+        description: ''
+        required: true
+        example: sunday
+        type: string
+        enumValues:
+          - monday
+          - tuesday
+          - wednesday
+          - thursday
+          - friday
+          - saturday
+          - sunday
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'slots[].class_subject_id':
+        custom: []
+        name: 'slots[].class_subject_id'
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the class_subjects table.'
+        required: false
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'slots[].teacher_id':
+        custom: []
+        name: 'slots[].teacher_id'
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the users table.'
+        required: false
+        example: 977e5426-8d13-3824-86aa-b092f8ae52c5
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'slots[].room':
+        custom: []
+        name: 'slots[].room'
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: 'y'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'slots[].notes':
+        custom: []
+        name: 'slots[].notes'
+        description: 'Must not be greater than 500 characters.'
+        required: false
+        example: v
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      slots:
+        -
+          time_period_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+          day_of_week: sunday
+          class_subject_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+          teacher_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
+          room: 'y'
+          notes: v
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/timetables/{timetable_id}/day/{day}'
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        custom: []
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      day:
+        custom: []
+        name: day
+        description: 'The day.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      timetable_id: architecto
+      day: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/timetables/teacher-schedule
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/timetables
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/timetables
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      academic_year_id:
+        custom: []
+        name: academic_year_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the academic_years table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      term_id:
+        custom: []
+        name: term_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the terms table.'
+        required: true
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      class_id:
+        custom: []
+        name: class_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the classes table.'
+        required: true
+        example: 977e5426-8d13-3824-86aa-b092f8ae52c5
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream_id:
+        custom: []
+        name: stream_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the streams table.'
+        required: false
+        example: d6fa562b-acd5-35ff-babb-d11194d3737b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      name:
+        custom: []
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      effective_from:
+        custom: []
+        name: effective_from
+        description: 'Must be a valid date.'
+        required: false
+        example: '2026-01-02T05:56:39'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      effective_to:
+        custom: []
+        name: effective_to
+        description: 'Must be a valid date. Must be a date after or equal to <code>effective_from</code>.'
+        required: false
+        example: '2052-01-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: ''
+        required: false
+        example: active
+        type: string
+        enumValues:
+          - draft
+          - active
+          - archived
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      academic_year_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      term_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+      class_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
+      stream_id: d6fa562b-acd5-35ff-babb-d11194d3737b
+      name: d
+      effective_from: '2026-01-02T05:56:39'
+      effective_to: '2052-01-26'
+      status: active
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/timetables/{id}'
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the timetable.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/timetables/{id}'
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the timetable.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      academic_year_id:
+        custom: []
+        name: academic_year_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the academic_years table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      term_id:
+        custom: []
+        name: term_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the terms table.'
+        required: true
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      class_id:
+        custom: []
+        name: class_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the classes table.'
+        required: true
+        example: 977e5426-8d13-3824-86aa-b092f8ae52c5
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream_id:
+        custom: []
+        name: stream_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the streams table.'
+        required: false
+        example: d6fa562b-acd5-35ff-babb-d11194d3737b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      name:
+        custom: []
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      effective_from:
+        custom: []
+        name: effective_from
+        description: 'Must be a valid date.'
+        required: false
+        example: '2026-01-02T05:56:39'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      effective_to:
+        custom: []
+        name: effective_to
+        description: 'Must be a valid date. Must be a date after or equal to <code>effective_from</code>.'
+        required: false
+        example: '2052-01-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: ''
+        required: false
+        example: archived
+        type: string
+        enumValues:
+          - draft
+          - active
+          - archived
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      academic_year_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      term_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+      class_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
+      stream_id: d6fa562b-acd5-35ff-babb-d11194d3737b
+      name: d
+      effective_from: '2026-01-02T05:56:39'
+      effective_to: '2052-01-26'
+      status: archived
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/timetables/{id}'
+    metadata:
+      custom: []
+      groupName: Timetables
+      groupDescription: |-
+
+        APIs for managing class timetables
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the timetable.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

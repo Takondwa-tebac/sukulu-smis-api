@@ -1,0 +1,479 @@
+name: 'Academic Structure - Streams'
+description: |-
+
+  APIs for managing class streams (e.g., Form 1A, Form 1B)
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/classes/{class_id}/streams'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Streams'
+      groupDescription: |-
+
+        APIs for managing class streams (e.g., Form 1A, Form 1B)
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get streams by class'
+      description: 'Get all streams for a specific class.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      class_id:
+        custom: []
+        name: class_id
+        description: 'The ID of the class.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      class:
+        custom: []
+        name: class
+        description: 'uuid required The class ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      class_id: architecto
+      class: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data": [{"id": "uuid", "name": "Stream A"}]}'
+        headers: []
+        description: Success
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/streams
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Streams'
+      groupDescription: |-
+
+        APIs for managing class streams (e.g., Form 1A, Form 1B)
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List all streams'
+      description: 'Get a paginated list of streams, optionally filtered by class.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      class_id:
+        custom: []
+        name: class_id
+        description: 'uuid Filter by class ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: 'Filter by active status.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page. Default: 15.'
+        required: false
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      class_id: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+      is_active: true
+      per_page: 20
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": [{"id": "uuid", "name": "Stream A", "capacity": 40, "is_active": true}],
+            "links": {},
+            "meta": {}
+          }
+        headers: []
+        description: Success
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/streams
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Streams'
+      groupDescription: |-
+
+        APIs for managing class streams (e.g., Form 1A, Form 1B)
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a stream'
+      description: 'Create a new stream for a class.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      class_id:
+        custom: []
+        name: class_id
+        description: 'The class this stream belongs to.'
+        required: true
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: uuid
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      name:
+        custom: []
+        name: name
+        description: 'The stream name.'
+        required: true
+        example: 'Stream A'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      capacity:
+        custom: []
+        name: capacity
+        description: 'The maximum capacity.'
+        required: false
+        example: 40
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: 'Whether the stream is active. Default: true.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      class_id: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+      name: 'Stream A'
+      capacity: 40
+      is_active: true
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"message": "Stream created successfully.", "data": {}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The given data was invalid."}'
+        headers: []
+        description: 'Validation Error'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/streams/{id}'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Streams'
+      groupDescription: |-
+
+        APIs for managing class streams (e.g., Form 1A, Form 1B)
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a stream'
+      description: 'Get details of a specific stream.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the stream.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream:
+        custom: []
+        name: stream
+        description: 'uuid required The stream ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+      stream: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data": {"id": "uuid", "name": "Stream A"}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message": "Stream not found."}'
+        headers: []
+        description: 'Not Found'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/streams/{id}'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Streams'
+      groupDescription: |-
+
+        APIs for managing class streams (e.g., Form 1A, Form 1B)
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a stream'
+      description: 'Update an existing stream.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the stream.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream:
+        custom: []
+        name: stream
+        description: 'uuid required The stream ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+      stream: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'The stream name.'
+        required: false
+        example: 'Stream B'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      capacity:
+        custom: []
+        name: capacity
+        description: 'The maximum capacity.'
+        required: false
+        example: 45
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: 'Whether the stream is active.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: 'Stream B'
+      capacity: 45
+      is_active: false
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data": {"id": "uuid", "name": "Stream B"}}'
+        headers: []
+        description: Success
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/streams/{id}'
+    metadata:
+      custom: []
+      groupName: 'Academic Structure - Streams'
+      groupDescription: |-
+
+        APIs for managing class streams (e.g., Form 1A, Form 1B)
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a stream'
+      description: 'Delete a stream. Cannot delete if students are enrolled.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the stream.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream:
+        custom: []
+        name: stream
+        description: 'uuid required The stream ID.'
+        required: false
+        example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+      stream: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"message": "Stream deleted successfully."}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"message": "Cannot delete stream with enrolled students."}'
+        headers: []
+        description: 'Has Students'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

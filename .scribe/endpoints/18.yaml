@@ -1,0 +1,779 @@
+name: 'Report Cards'
+description: |-
+
+  APIs for managing student report cards
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/report-cards/generate
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      academic_year_id:
+        custom: []
+        name: academic_year_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the academic_years table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      term_id:
+        custom: []
+        name: term_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the terms table.'
+        required: true
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      class_id:
+        custom: []
+        name: class_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the classes table.'
+        required: true
+        example: 977e5426-8d13-3824-86aa-b092f8ae52c5
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream_id:
+        custom: []
+        name: stream_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the streams table.'
+        required: false
+        example: d6fa562b-acd5-35ff-babb-d11194d3737b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      grading_system_id:
+        custom: []
+        name: grading_system_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the grading_systems table.'
+        required: true
+        example: 5707ca55-f609-3528-be8b-1baeaee1567e
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      student_ids:
+        custom: []
+        name: student_ids
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the students table.'
+        required: false
+        example:
+          - 947170af-7488-3f30-a16d-723355a9502f
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      academic_year_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      term_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+      class_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
+      stream_id: d6fa562b-acd5-35ff-babb-d11194d3737b
+      grading_system_id: 5707ca55-f609-3528-be8b-1baeaee1567e
+      student_ids:
+        - 947170af-7488-3f30-a16d-723355a9502f
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/report-cards/bulk-approve
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      report_card_ids:
+        custom: []
+        name: report_card_ids
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the report_cards table.'
+        required: false
+        example:
+          - 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      report_card_ids:
+        - 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/report-cards/bulk-publish
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      report_card_ids:
+        custom: []
+        name: report_card_ids
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the report_cards table.'
+        required: false
+        example:
+          - 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      report_card_ids:
+        - 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/report-cards/{report_card_id}/approve'
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      report_card_id:
+        custom: []
+        name: report_card_id
+        description: 'The ID of the report card.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      report_card_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/report-cards/{report_card_id}/publish'
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      report_card_id:
+        custom: []
+        name: report_card_id
+        description: 'The ID of the report card.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      report_card_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/report-cards/student/{student_id}'
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/report-cards/{report_card_id}/download'
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      report_card_id:
+        custom: []
+        name: report_card_id
+        description: 'The ID of the report card.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      report_card_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/report-cards/download-bulk
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      report_card_ids:
+        custom: []
+        name: report_card_ids
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the report_cards table.'
+        required: false
+        example:
+          - 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      report_card_ids:
+        - 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/report-cards/student/{student_id}/transcript'
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      student_id:
+        custom: []
+        name: student_id
+        description: 'The ID of the student.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      student_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/report-cards/class-summary
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      exam_id:
+        custom: []
+        name: exam_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the exams table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      class_id:
+        custom: []
+        name: class_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the classes table.'
+        required: true
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      stream_id:
+        custom: []
+        name: stream_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the streams table.'
+        required: false
+        example: 977e5426-8d13-3824-86aa-b092f8ae52c5
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      exam_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      class_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+      stream_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/report-cards
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/report-cards/{id}'
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the report card.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/report-cards/{id}'
+    metadata:
+      custom: []
+      groupName: 'Report Cards'
+      groupDescription: |-
+
+        APIs for managing student report cards
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the report card.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      class_teacher_remarks:
+        custom: []
+        name: class_teacher_remarks
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      head_teacher_remarks:
+        custom: []
+        name: head_teacher_remarks
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      next_term_begins:
+        custom: []
+        name: next_term_begins
+        description: 'Must be a valid date.'
+        required: false
+        example: '2026-01-02T05:56:39'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      next_term_fees:
+        custom: []
+        name: next_term_fees
+        description: 'Must be at least 0.'
+        required: false
+        example: 84
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      class_teacher_remarks: b
+      head_teacher_remarks: 'n'
+      next_term_begins: '2026-01-02T05:56:39'
+      next_term_fees: 84
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

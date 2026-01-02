@@ -1,0 +1,862 @@
+name: 'Grading Systems'
+description: |-
+
+  APIs for managing grading systems and calculating grades
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/grading-systems/system-defaults
+    metadata:
+      custom: []
+      groupName: 'Grading Systems'
+      groupDescription: |-
+
+        APIs for managing grading systems and calculating grades
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get system defaults'
+      description: 'Get all system default grading systems (Malawi and International).'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/grading-systems/calculate
+    metadata:
+      custom: []
+      groupName: 'Grading Systems'
+      groupDescription: |-
+
+        APIs for managing grading systems and calculating grades
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Calculate grades'
+      description: 'Calculate grades for a set of subject scores using a specific grading system.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      grading_system_id:
+        custom: []
+        name: grading_system_id
+        description: 'The grading system to use'
+        required: true
+        example: architecto
+        type: uuid
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      scores:
+        custom: []
+        name: scores
+        description: 'Array of subject scores'
+        required: true
+        example:
+          - architecto
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'scores[].subject_code':
+        custom: []
+        name: 'scores[].subject_code'
+        description: 'Must not be greater than 10 characters.'
+        required: true
+        example: bngzmi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'scores[].score':
+        custom: []
+        name: 'scores[].score'
+        description: 'Must be at least 0.'
+        required: true
+        example: 76
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'scores.*.subject_code':
+        custom: []
+        name: 'scores.*.subject_code'
+        description: 'Subject code.'
+        required: true
+        example: ENG
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'scores.*.score':
+        custom: []
+        name: 'scores.*.score'
+        description: 'Score achieved.'
+        required: true
+        example: 75.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      grading_system_id: architecto
+      scores:
+        - architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+    uri: 'api/v1/grading-systems/{grading_system_id}/grade-scales'
+    metadata:
+      custom: []
+      groupName: 'Grading Systems'
+      groupDescription: |-
+
+        APIs for managing grading systems and calculating grades
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update grade scales'
+      description: 'Update the grade scales for a grading system.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      grading_system_id:
+        custom: []
+        name: grading_system_id
+        description: 'The ID of the grading system.'
+        required: true
+        example: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      grading_system:
+        custom: []
+        name: grading_system
+        description: 'uuid required The grading system ID'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      grading_system_id: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+      grading_system: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      grade_scales:
+        custom: []
+        name: grade_scales
+        description: 'Array of grade scale definitions'
+        required: true
+        example:
+          - architecto
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].id':
+        custom: []
+        name: 'grade_scales[].id'
+        description: 'Must be a valid UUID.'
+        required: false
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].grade':
+        custom: []
+        name: 'grade_scales[].grade'
+        description: 'Must not be greater than 10 characters.'
+        required: true
+        example: gzmiyv
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].grade_label':
+        custom: []
+        name: 'grade_scales[].grade_label'
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].min_score':
+        custom: []
+        name: 'grade_scales[].min_score'
+        description: ''
+        required: true
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].max_score':
+        custom: []
+        name: 'grade_scales[].max_score'
+        description: ''
+        required: true
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].gpa_points':
+        custom: []
+        name: 'grade_scales[].gpa_points'
+        description: 'Must be at least 0.'
+        required: false
+        example: 77
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].points':
+        custom: []
+        name: 'grade_scales[].points'
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].remark':
+        custom: []
+        name: 'grade_scales[].remark'
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].is_passing':
+        custom: []
+        name: 'grade_scales[].is_passing'
+        description: ''
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].sort_order':
+        custom: []
+        name: 'grade_scales[].sort_order'
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      grade_scales:
+        - architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/grading-systems
+    metadata:
+      custom: []
+      groupName: 'Grading Systems'
+      groupDescription: |-
+
+        APIs for managing grading systems and calculating grades
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List all grading systems'
+      description: |-
+        Get a paginated list of grading systems available to the authenticated user's school.
+        System defaults are always included.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page. Default: 15'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: 'Filter by type (primary, secondary_jce, secondary_msce, international)'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: 'Filter by active status'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      include_scales:
+        custom: []
+        name: include_scales
+        description: 'Include grade scales in response. Default: false'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 16
+      type: architecto
+      is_active: false
+      include_scales: false
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/grading-systems
+    metadata:
+      custom: []
+      groupName: 'Grading Systems'
+      groupDescription: |-
+
+        APIs for managing grading systems and calculating grades
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a grading system'
+      description: 'Create a new custom grading system for the school.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'The name of the grading system.'
+        required: true
+        example: 'Custom Primary Grading'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      code:
+        custom: []
+        name: code
+        description: 'Unique code for the grading system.'
+        required: true
+        example: custom-primary
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: 'Animi quos velit et fugiat.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: 'Type of grading system.'
+        required: true
+        example: primary
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      scale_type:
+        custom: []
+        name: scale_type
+        description: 'Scale type (letter, numeric, percentage, gpa, points).'
+        required: true
+        example: percentage
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      min_score:
+        custom: []
+        name: min_score
+        description: 'Minimum possible score.'
+        required: true
+        example: 0.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      max_score:
+        custom: []
+        name: max_score
+        description: 'Maximum possible score.'
+        required: true
+        example: 100.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      pass_mark:
+        custom: []
+        name: pass_mark
+        description: 'Passing mark.'
+        required: true
+        example: 50.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      min_subjects_to_pass:
+        custom: []
+        name: min_subjects_to_pass
+        description: 'Minimum subjects to pass.'
+        required: true
+        example: 6
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      priority_subjects:
+        custom: []
+        name: priority_subjects
+        description: 'Must not be greater than 10 characters.'
+        required: false
+        example:
+          - yvdljn
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      certification_rules:
+        custom: []
+        name: certification_rules
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      progression_rules:
+        custom: []
+        name: progression_rules
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      settings:
+        custom: []
+        name: settings
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      grade_scales:
+        custom: []
+        name: grade_scales
+        description: 'Array of grade scale definitions'
+        required: true
+        example:
+          - architecto
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].grade':
+        custom: []
+        name: 'grade_scales[].grade'
+        description: 'Must not be greater than 10 characters.'
+        required: true
+        example: bngzmi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].grade_label':
+        custom: []
+        name: 'grade_scales[].grade_label'
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: 'y'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].min_score':
+        custom: []
+        name: 'grade_scales[].min_score'
+        description: ''
+        required: true
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].max_score':
+        custom: []
+        name: 'grade_scales[].max_score'
+        description: ''
+        required: true
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].gpa_points':
+        custom: []
+        name: 'grade_scales[].gpa_points'
+        description: 'Must be at least 0.'
+        required: false
+        example: 77
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].points':
+        custom: []
+        name: 'grade_scales[].points'
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].remark':
+        custom: []
+        name: 'grade_scales[].remark'
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'grade_scales[].is_passing':
+        custom: []
+        name: 'grade_scales[].is_passing'
+        description: ''
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'grade_scales[].sort_order':
+        custom: []
+        name: 'grade_scales[].sort_order'
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      name: 'Custom Primary Grading'
+      code: custom-primary
+      description: 'Animi quos velit et fugiat.'
+      type: primary
+      scale_type: percentage
+      min_score: 0.0
+      max_score: 100.0
+      pass_mark: 50.0
+      min_subjects_to_pass: 6
+      priority_subjects:
+        - yvdljn
+      is_active: false
+      grade_scales:
+        - architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/grading-systems/{id}'
+    metadata:
+      custom: []
+      groupName: 'Grading Systems'
+      groupDescription: |-
+
+        APIs for managing grading systems and calculating grades
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a grading system'
+      description: 'Retrieve details of a specific grading system including its grade scales.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the grading system.'
+        required: true
+        example: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      grading_system:
+        custom: []
+        name: grading_system
+        description: 'uuid required The grading system ID'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+      grading_system: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/grading-systems/{id}'
+    metadata:
+      custom: []
+      groupName: 'Grading Systems'
+      groupDescription: |-
+
+        APIs for managing grading systems and calculating grades
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a grading system'
+      description: 'Delete a custom grading system. System defaults cannot be deleted.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the grading system.'
+        required: true
+        example: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      grading_system:
+        custom: []
+        name: grading_system
+        description: 'uuid required The grading system ID'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+      grading_system: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
