@@ -319,7 +319,7 @@ endpoints:
         name: severity
         description: ''
         required: false
-        example: minor
+        example: major
         type: string
         enumValues:
           - minor
@@ -355,7 +355,7 @@ endpoints:
       name: b
       code: ngzmiyvdljnikhwa
       description: 'Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui.'
-      severity: minor
+      severity: major
       default_points: 20
       is_active: false
     fileParameters: []
@@ -529,7 +529,7 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: community_service
+        example: detention
         type: string
         enumValues:
           - warning
@@ -558,7 +558,7 @@ endpoints:
         name: requires_parent_notification
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -569,7 +569,7 @@ endpoints:
         name: requires_approval
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -580,7 +580,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -589,11 +589,11 @@ endpoints:
     cleanBodyParameters:
       name: b
       description: 'Et animi quos velit et fugiat.'
-      type: community_service
+      type: detention
       duration_days: 1
-      requires_parent_notification: true
-      requires_approval: true
-      is_active: true
+      requires_parent_notification: false
+      requires_approval: false
+      is_active: false
     fileParameters: []
     responses: []
     responseFields: []
@@ -720,7 +720,7 @@ endpoints:
         name: type
         description: ''
         required: false
-        example: other
+        example: suspension
         type: string
         enumValues:
           - warning
@@ -749,7 +749,7 @@ endpoints:
         name: requires_parent_notification
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -780,9 +780,9 @@ endpoints:
     cleanBodyParameters:
       name: b
       description: 'Et animi quos velit et fugiat.'
-      type: other
+      type: suspension
       duration_days: 1
-      requires_parent_notification: true
+      requires_parent_notification: false
       requires_approval: true
       is_active: true
     fileParameters: []
@@ -1037,7 +1037,7 @@ endpoints:
         name: incident_time
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1093,7 +1093,7 @@ endpoints:
       academic_year_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
       term_id: d6fa562b-acd5-35ff-babb-d11194d3737b
       incident_date: architecto
-      incident_time: '05:56'
+      incident_time: '08:30'
       location: d
       description: 'Eius et animi quos velit et.'
       witnesses: 'y'
@@ -1213,7 +1213,7 @@ endpoints:
         name: incident_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:40'
+        example: '2026-01-02T08:30:10'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1224,7 +1224,7 @@ endpoints:
         name: incident_time
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1292,8 +1292,8 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       category_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-      incident_date: '2026-01-02T05:56:40'
-      incident_time: '05:56'
+      incident_date: '2026-01-02T08:30:10'
+      incident_time: '08:30'
       location: g
       description: 'Quos velit et fugiat sunt nihil accusantium harum.'
       witnesses: i
@@ -1430,7 +1430,7 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2026-01-02T05:56:40'
+        example: '2026-01-02T08:30:10'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1460,7 +1460,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       action_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-      start_date: '2026-01-02T05:56:40'
+      start_date: '2026-01-02T08:30:10'
       end_date: '2052-01-26'
       notes: 'n'
     fileParameters: []

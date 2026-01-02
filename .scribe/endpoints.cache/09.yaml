@@ -111,7 +111,7 @@ endpoints:
         name: relationship_type
         description: ''
         required: false
-        example: uncle
+        example: guardian
         type: string
         enumValues:
           - father
@@ -261,7 +261,7 @@ endpoints:
       first_name: b
       middle_name: 'n'
       last_name: g
-      relationship_type: uncle
+      relationship_type: guardian
       phone_primary: zmiyvdljnikhwayk
       phone_number: cmyuwpwlvqwrsitc
       phone_secondary: pscqldzsnrwtujwv
@@ -412,7 +412,7 @@ endpoints:
         name: relationship_type
         description: ''
         required: false
-        example: uncle
+        example: father
         type: string
         enumValues:
           - father
@@ -530,7 +530,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -540,7 +540,7 @@ endpoints:
       first_name: b
       middle_name: 'n'
       last_name: g
-      relationship_type: uncle
+      relationship_type: father
       phone_primary: zmiyvdljnikhwayk
       phone_number: cmyuwpwlvqwrsitc
       phone_secondary: pscqldzsnrwtujwv
@@ -550,7 +550,7 @@ endpoints:
       employer: 'n'
       address: t
       national_id: l
-      is_active: false
+      is_active: true
     fileParameters: []
     responses: []
     responseFields: []

@@ -139,7 +139,7 @@ endpoints:
         name: document_type
         description: ''
         required: true
-        example: other
+        example: medical_record
         type: string
         enumValues:
           - birth_certificate
@@ -150,7 +150,7 @@ endpoints:
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      document_type: other
+      document_type: medical_record
     fileParameters:
       document: null
     responses: []

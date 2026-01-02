@@ -68,7 +68,7 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: true
-        example: '2026-01-02T05:56:37'
+        example: '2026-01-02T08:30:04'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -78,7 +78,7 @@ endpoints:
       student_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
       academic_year_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
       term_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
-      due_date: '2026-01-02T05:56:37'
+      due_date: '2026-01-02T08:30:04'
     fileParameters: []
     responses: []
     responseFields: []
@@ -337,7 +337,7 @@ endpoints:
         name: invoice_date
         description: 'Must be a valid date.'
         required: true
-        example: '2026-01-02T05:56:37'
+        example: '2026-01-02T08:30:04'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -447,7 +447,7 @@ endpoints:
       student_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
       academic_year_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
       term_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
-      invoice_date: '2026-01-02T05:56:37'
+      invoice_date: '2026-01-02T08:30:04'
       due_date: '2052-01-26'
       discount_amount: 39
       discount_reason: g
@@ -563,7 +563,7 @@ endpoints:
         name: invoice_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:37'
+        example: '2026-01-02T08:30:04'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -574,7 +574,7 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:37'
+        example: '2026-01-02T08:30:04'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -614,8 +614,8 @@ endpoints:
         nullable: true
         deprecated: false
     cleanBodyParameters:
-      invoice_date: '2026-01-02T05:56:37'
-      due_date: '2026-01-02T05:56:37'
+      invoice_date: '2026-01-02T08:30:04'
+      due_date: '2026-01-02T08:30:04'
       discount_amount: 27
       discount_reason: 'n'
       notes: g

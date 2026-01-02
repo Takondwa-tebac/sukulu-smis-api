@@ -287,7 +287,7 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: in_app
+        example: push
         type: string
         enumValues:
           - sms
@@ -335,7 +335,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -344,10 +344,10 @@ endpoints:
     cleanBodyParameters:
       name: b
       code: 'n'
-      type: in_app
+      type: push
       subject: g
       body: z
-      is_active: true
+      is_active: false
     fileParameters: []
     responses: []
     responseFields: []
@@ -441,7 +441,7 @@ endpoints:
         name: type
         description: 'This field is required when <code>template_id</code> is not present.'
         required: false
-        example: push
+        example: sms
         type: string
         enumValues:
           - sms
@@ -501,7 +501,7 @@ endpoints:
         name: 'recipients[].type'
         description: ''
         required: true
-        example: student
+        example: guardian
         type: string
         enumValues:
           - user
@@ -523,12 +523,12 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       template_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-      type: push
+      type: sms
       subject: g
       body: z
       recipients:
         -
-          type: student
+          type: guardian
           id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
     fileParameters: []
     responses: []

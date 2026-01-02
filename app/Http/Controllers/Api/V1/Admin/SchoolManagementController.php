@@ -198,6 +198,16 @@ class SchoolManagementController extends Controller
 
     public function statistics(): JsonResponse
     {
+        $schoolsThisMonth = School::whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->count();
+        $schoolsLastMonth = School::whereMonth('created_at', now()->subMonth()->month)
+            ->whereYear('created_at', now()->subMonth()->year)
+            ->count();
+        $growthPercentage = $schoolsLastMonth > 0 
+            ? round((($schoolsThisMonth - $schoolsLastMonth) / $schoolsLastMonth) * 100, 1) 
+            : 0;
+
         $stats = [
             'total_schools' => School::count(),
             'active_schools' => School::where('status', School::STATUS_ACTIVE)->count(),
@@ -213,6 +223,13 @@ class SchoolManagementController extends Controller
                 ->where('subscription_expires_at', '>', now())
                 ->count(),
             'total_users' => User::count(),
+            'total_students' => \App\Models\Student::count(),
+            'total_teachers' => User::role('teacher')->count(),
+            'monthly_revenue' => \App\Models\TenantPayment::whereMonth('payment_date', now()->month)
+                ->whereYear('payment_date', now()->year)
+                ->sum('amount'),
+            'schools_this_month' => $schoolsThisMonth,
+            'schools_growth_percentage' => $growthPercentage,
         ];
 
         return response()->json($stats);

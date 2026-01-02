@@ -44,7 +44,7 @@ endpoints:
         name: date
         description: 'Must be a valid date.'
         required: true
-        example: '2026-01-02T05:56:39'
+        example: '2026-01-02T08:30:08'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -52,7 +52,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       class_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-      date: '2026-01-02T05:56:39'
+      date: '2026-01-02T08:30:08'
     fileParameters: []
     responses:
       -
@@ -245,7 +245,7 @@ endpoints:
         name: 'attendances[].status'
         description: ''
         required: true
-        example: excused
+        example: half_day
         type: string
         enumValues:
           - present
@@ -261,7 +261,7 @@ endpoints:
         name: 'attendances[].arrival_time'
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -272,7 +272,7 @@ endpoints:
         name: 'attendances[].departure_time'
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -304,9 +304,9 @@ endpoints:
       attendances:
         -
           student_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-          status: excused
-          arrival_time: '05:56'
-          departure_time: '05:56'
+          status: half_day
+          arrival_time: '08:30'
+          departure_time: '08:30'
           absence_reason: g
           notes: z
     fileParameters: []
@@ -433,7 +433,7 @@ endpoints:
         name: date
         description: 'Must be a valid date.'
         required: true
-        example: '2026-01-02T05:56:40'
+        example: '2026-01-02T08:30:09'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -444,7 +444,7 @@ endpoints:
         name: session_type
         description: ''
         required: false
-        example: morning
+        example: afternoon
         type: string
         enumValues:
           - morning
@@ -469,8 +469,8 @@ endpoints:
       term_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
       class_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
       stream_id: d6fa562b-acd5-35ff-babb-d11194d3737b
-      date: '2026-01-02T05:56:40'
-      session_type: morning
+      date: '2026-01-02T08:30:09'
+      session_type: afternoon
       notes: d
     fileParameters: []
     responses: []

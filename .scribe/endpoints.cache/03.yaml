@@ -188,7 +188,7 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2026-01-02T05:56:34'
+        example: '2026-01-02T08:29:56'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -230,7 +230,7 @@ endpoints:
     cleanBodyParameters:
       academic_year_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
       name: g
-      start_date: '2026-01-02T05:56:34'
+      start_date: '2026-01-02T08:29:56'
       end_date: '2052-01-26'
       is_current: true
       sort_order: 16
@@ -350,7 +350,7 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:34'
+        example: '2026-01-02T08:29:57'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -372,7 +372,7 @@ endpoints:
         name: is_current
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -391,9 +391,9 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       name: b
-      start_date: '2026-01-02T05:56:34'
+      start_date: '2026-01-02T08:29:57'
       end_date: '2052-01-26'
-      is_current: true
+      is_current: false
       sort_order: 16
     fileParameters: []
     responses: []

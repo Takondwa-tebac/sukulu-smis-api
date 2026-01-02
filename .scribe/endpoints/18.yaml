@@ -748,7 +748,7 @@ endpoints:
         name: next_term_begins
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:39'
+        example: '2026-01-02T08:30:07'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -768,7 +768,7 @@ endpoints:
     cleanBodyParameters:
       class_teacher_remarks: b
       head_teacher_remarks: 'n'
-      next_term_begins: '2026-01-02T05:56:39'
+      next_term_begins: '2026-01-02T08:30:07'
       next_term_fees: 84
     fileParameters: []
     responses: []

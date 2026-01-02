@@ -326,7 +326,7 @@ endpoints:
         name: is_compulsory
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -347,7 +347,7 @@ endpoints:
       class_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
       subject_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
       teacher_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
-      is_compulsory: false
+      is_compulsory: true
       periods_per_week: 13
     fileParameters: []
     responses: []
@@ -465,7 +465,7 @@ endpoints:
         name: is_compulsory
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -484,7 +484,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       teacher_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-      is_compulsory: false
+      is_compulsory: true
       periods_per_week: 7
     fileParameters: []
     responses: []

@@ -175,14 +175,14 @@ endpoints:
         name: id
         description: 'The ID of the role.'
         required: true
-        example: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+        example: a63bed04-f197-4001-b16c-3293c6efe283
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+      id: a63bed04-f197-4001-b16c-3293c6efe283
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -230,14 +230,14 @@ endpoints:
         name: id
         description: 'The ID of the role.'
         required: true
-        example: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+        example: a63bed04-f197-4001-b16c-3293c6efe283
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+      id: a63bed04-f197-4001-b16c-3293c6efe283
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -313,14 +313,14 @@ endpoints:
         name: id
         description: 'The ID of the role.'
         required: true
-        example: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+        example: a63bed04-f197-4001-b16c-3293c6efe283
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+      id: a63bed04-f197-4001-b16c-3293c6efe283
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -358,14 +358,14 @@ endpoints:
         name: role_id
         description: 'The ID of the role.'
         required: true
-        example: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+        example: a63bed04-f197-4001-b16c-3293c6efe283
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      role_id: c977fb2a-d5f9-46f4-82ae-2c1d633309af
+      role_id: a63bed04-f197-4001-b16c-3293c6efe283
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:

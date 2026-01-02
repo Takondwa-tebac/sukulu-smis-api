@@ -313,7 +313,7 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:38'
+        example: '2026-01-02T08:30:05'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -324,7 +324,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -381,8 +381,8 @@ endpoints:
       term_id: c90237e9-ced5-3af6-88ea-84aeaa148878
       class_id: a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f
       description: 'Sunt nihil accusantium harum mollitia.'
-      due_date: '2026-01-02T05:56:38'
-      is_active: true
+      due_date: '2026-01-02T08:30:05'
+      is_active: false
       items:
         -
           fee_category_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
@@ -515,7 +515,7 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:38'
+        example: '2026-01-02T08:30:05'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -579,7 +579,7 @@ endpoints:
     cleanBodyParameters:
       name: b
       description: 'Et animi quos velit et fugiat.'
-      due_date: '2026-01-02T05:56:38'
+      due_date: '2026-01-02T08:30:05'
       is_active: true
       items:
         -

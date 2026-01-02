@@ -288,7 +288,7 @@ endpoints:
         name: settings.sms_notifications
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -299,7 +299,7 @@ endpoints:
         name: settings.email_notifications
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -365,8 +365,8 @@ endpoints:
         grading_system_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
         academic_year_format: g
         attendance_tracking: true
-        sms_notifications: false
-        email_notifications: false
+        sms_notifications: true
+        email_notifications: true
         report_card_template: architecto
         invoice_prefix: ngzmiy
         receipt_prefix: vdljni
@@ -463,7 +463,7 @@ endpoints:
         name: enabled
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -471,7 +471,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       module: architecto
-      enabled: false
+      enabled: true
     fileParameters: []
     responses: []
     responseFields: []

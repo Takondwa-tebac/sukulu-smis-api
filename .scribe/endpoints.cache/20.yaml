@@ -115,7 +115,7 @@ endpoints:
         name: 'slots[].day_of_week'
         description: ''
         required: true
-        example: sunday
+        example: tuesday
         type: string
         enumValues:
           - monday
@@ -176,7 +176,7 @@ endpoints:
       slots:
         -
           time_period_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-          day_of_week: sunday
+          day_of_week: tuesday
           class_subject_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
           teacher_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
           room: 'y'
@@ -426,7 +426,7 @@ endpoints:
         name: effective_from
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:39'
+        example: '2026-01-02T08:30:08'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -448,7 +448,7 @@ endpoints:
         name: status
         description: ''
         required: false
-        example: active
+        example: archived
         type: string
         enumValues:
           - draft
@@ -463,9 +463,9 @@ endpoints:
       class_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
       stream_id: d6fa562b-acd5-35ff-babb-d11194d3737b
       name: d
-      effective_from: '2026-01-02T05:56:39'
+      effective_from: '2026-01-02T08:30:08'
       effective_to: '2052-01-26'
-      status: active
+      status: archived
     fileParameters: []
     responses: []
     responseFields: []
@@ -626,7 +626,7 @@ endpoints:
         name: effective_from
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:39'
+        example: '2026-01-02T08:30:08'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -663,7 +663,7 @@ endpoints:
       class_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
       stream_id: d6fa562b-acd5-35ff-babb-d11194d3737b
       name: d
-      effective_from: '2026-01-02T05:56:39'
+      effective_from: '2026-01-02T08:30:08'
       effective_to: '2052-01-26'
       status: archived
     fileParameters: []

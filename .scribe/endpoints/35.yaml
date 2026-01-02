@@ -1,0 +1,976 @@
+name: 'Admin - Billing'
+description: |-
+
+  APIs for super-admin to manage tenant (school) billing and invoices.
+  These endpoints require the `super-admin` role.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/admin/billing/stats
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get billing statistics'
+      description: 'Get overall billing statistics for the platform.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"total_revenue": 1000000, "pending_invoices": 5, ...}'
+        headers: []
+        description: Success
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/billing/schools/{school_id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get school billing details'
+      description: 'Get billing summary and invoices for a specific school.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      school_id:
+        custom: []
+        name: school_id
+        description: 'The ID of the school.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      school_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/admin/billing/invoices
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List all tenant invoices'
+      description: 'Get a paginated list of all tenant invoices.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      status:
+        custom: []
+        name: status
+        description: 'Filter by status.'
+        required: false
+        example: sent
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      school_id:
+        custom: []
+        name: school_id
+        description: 'Filter by school.'
+        required: false
+        example: uuid
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Items per page. Default: 15.'
+        required: false
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      status: sent
+      school_id: uuid
+      per_page: 20
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/admin/billing/invoices
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a tenant invoice'
+      description: 'Create a new invoice for a school/tenant.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      school_id:
+        custom: []
+        name: school_id
+        description: 'Must be a valid UUID. The <code>id</code> of an existing record in the schools table.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      invoice_date:
+        custom: []
+        name: invoice_date
+        description: 'Must be a valid date.'
+        required: false
+        example: '2026-01-02T08:30:45'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      due_date:
+        custom: []
+        name: due_date
+        description: 'Must be a valid date. Must be a date after or equal to <code>invoice_date</code>.'
+        required: true
+        example: '2052-01-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      currency:
+        custom: []
+        name: currency
+        description: 'Must be 3 characters.'
+        required: false
+        example: ngz
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'Velit et fugiat sunt nihil accusantium.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      discount_amount:
+        custom: []
+        name: discount_amount
+        description: 'Must be at least 0.'
+        required: false
+        example: 52
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      discount_reason:
+        custom: []
+        name: discount_reason
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: i
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: k
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      items:
+        custom: []
+        name: items
+        description: 'Must have at least 1 items.'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'items[].description':
+        custom: []
+        name: 'items[].description'
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'items[].quantity':
+        custom: []
+        name: 'items[].quantity'
+        description: 'Must be at least 1.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      'items[].unit_price':
+        custom: []
+        name: 'items[].unit_price'
+        description: 'Must be at least 0.'
+        required: true
+        example: 42
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      school_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      invoice_date: '2026-01-02T08:30:45'
+      due_date: '2052-01-26'
+      currency: ngz
+      description: 'Velit et fugiat sunt nihil accusantium.'
+      discount_amount: 52
+      discount_reason: i
+      notes: k
+      items:
+        -
+          description: 'Eius et animi quos velit et.'
+          quantity: 16
+          unit_price: 42
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a tenant invoice'
+      description: 'Get details of a specific tenant invoice.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a tenant invoice'
+      description: 'Update a draft tenant invoice.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      due_date:
+        custom: []
+        name: due_date
+        description: 'Must be a valid date.'
+        required: false
+        example: '2026-01-02T08:30:46'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      currency:
+        custom: []
+        name: currency
+        description: 'Must be 3 characters.'
+        required: false
+        example: bng
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'Quos velit et fugiat sunt nihil accusantium harum.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      discount_amount:
+        custom: []
+        name: discount_amount
+        description: 'Must be at least 0.'
+        required: false
+        example: 8
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      discount_reason:
+        custom: []
+        name: discount_reason
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: k
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: h
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      due_date: '2026-01-02T08:30:46'
+      currency: bng
+      description: 'Quos velit et fugiat sunt nihil accusantium harum.'
+      discount_amount: 8
+      discount_reason: k
+      notes: h
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a tenant invoice'
+      description: 'Delete a draft tenant invoice.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}/send'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Send a tenant invoice'
+      description: 'Mark invoice as sent and email to school with PDF attachment.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}/resend'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Resend invoice email'
+      description: 'Resend the invoice email to the school.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}/download'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Download invoice PDF'
+      description: 'Generate and download the invoice as a PDF.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}/mark-paid'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mark invoice as paid'
+      description: 'Quick action to mark an invoice as fully paid.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      payment_method:
+        custom: []
+        name: payment_method
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      reference_number:
+        custom: []
+        name: reference_number
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Must not be greater than 500 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      payment_method: b
+      reference_number: 'n'
+      notes: g
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}/void'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Void a tenant invoice'
+      description: 'Void an invoice that has no payments.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/billing/invoices/{tenant_invoice_id}/payments'
+    metadata:
+      custom: []
+      groupName: 'Admin - Billing'
+      groupDescription: |-
+
+        APIs for super-admin to manage tenant (school) billing and invoices.
+        These endpoints require the `super-admin` role.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Record a payment'
+      description: 'Record a payment against a tenant invoice.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tenant_invoice_id:
+        custom: []
+        name: tenant_invoice_id
+        description: 'The ID of the tenant invoice.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tenant_invoice_id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      amount:
+        custom: []
+        name: amount
+        description: 'Must be at least 0.01.'
+        required: true
+        example: 27
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      currency:
+        custom: []
+        name: currency
+        description: 'Must be 3 characters.'
+        required: false
+        example: ngz
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      payment_method:
+        custom: []
+        name: payment_method
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: m
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      reference_number:
+        custom: []
+        name: reference_number
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: i
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      payment_date:
+        custom: []
+        name: payment_date
+        description: 'Must be a valid date.'
+        required: true
+        example: '2026-01-02T08:30:47'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Must not be greater than 500 characters.'
+        required: false
+        example: 'y'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      amount: 27
+      currency: ngz
+      payment_method: m
+      reference_number: i
+      payment_date: '2026-01-02T08:30:47'
+      notes: 'y'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

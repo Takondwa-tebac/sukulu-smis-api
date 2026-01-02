@@ -341,7 +341,7 @@ endpoints:
         name: is_internal
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -349,7 +349,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       comment: b
-      is_internal: false
+      is_internal: true
     fileParameters: []
     responses: []
     responseFields: []

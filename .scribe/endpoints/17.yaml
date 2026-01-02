@@ -279,7 +279,7 @@ endpoints:
         name: payment_date
         description: 'Must be a valid date.'
         required: true
-        example: '2026-01-02T05:56:38'
+        example: '2026-01-02T08:30:05'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -301,7 +301,7 @@ endpoints:
         name: payment_method
         description: ''
         required: true
-        example: cheque
+        example: bank_transfer
         type: string
         enumValues:
           - cash
@@ -415,9 +415,9 @@ endpoints:
     cleanBodyParameters:
       student_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
       student_invoice_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
-      payment_date: '2026-01-02T05:56:38'
+      payment_date: '2026-01-02T08:30:05'
       amount: 77
-      payment_method: cheque
+      payment_method: bank_transfer
       reference_number: i
       bank_name: 'y'
       cheque_number: v

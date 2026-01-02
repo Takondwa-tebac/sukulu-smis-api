@@ -115,7 +115,7 @@ endpoints:
         name: 'subjects[].exam_date'
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:36'
+        example: '2026-01-02T08:30:02'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -126,7 +126,7 @@ endpoints:
         name: 'subjects[].start_time'
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -169,8 +169,8 @@ endpoints:
       subjects:
         -
           class_subject_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-          exam_date: '2026-01-02T05:56:36'
-          start_time: '05:56'
+          exam_date: '2026-01-02T08:30:02'
+          start_time: '08:30'
           duration_minutes: 67
           max_score: 66
           venue: m
@@ -298,7 +298,7 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:37'
+        example: '2026-01-02T08:30:03'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -375,7 +375,7 @@ endpoints:
         name: 'subjects[].exam_date'
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:37'
+        example: '2026-01-02T08:30:03'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -386,7 +386,7 @@ endpoints:
         name: 'subjects[].start_time'
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -430,15 +430,15 @@ endpoints:
       term_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
       exam_type_id: 977e5426-8d13-3824-86aa-b092f8ae52c5
       name: 'y'
-      start_date: '2026-01-02T05:56:37'
+      start_date: '2026-01-02T08:30:03'
       end_date: '2052-01-26'
       max_score: 22
       instructions: g
       subjects:
         -
           class_subject_id: c90237e9-ced5-3af6-88ea-84aeaa148878
-          exam_date: '2026-01-02T05:56:37'
-          start_time: '05:56'
+          exam_date: '2026-01-02T08:30:03'
+          start_time: '08:30'
           duration_minutes: 35
           max_score: 43
           venue: v
@@ -558,7 +558,7 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-01-02T05:56:37'
+        example: '2026-01-02T08:30:03'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -591,7 +591,7 @@ endpoints:
         name: status
         description: ''
         required: false
-        example: draft
+        example: archived
         type: string
         enumValues:
           - draft
@@ -627,10 +627,10 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       name: b
-      start_date: '2026-01-02T05:56:37'
+      start_date: '2026-01-02T08:30:03'
       end_date: '2052-01-26'
       max_score: 22
-      status: draft
+      status: archived
       instructions: g
     fileParameters: []
     responses: []

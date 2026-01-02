@@ -177,7 +177,7 @@ endpoints:
         name: grading_system_id
         description: 'The ID of the grading system.'
         required: true
-        example: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+        example: 89dc0398-bc16-421a-9c26-b2a1fd12ede9
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -195,7 +195,7 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      grading_system_id: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+      grading_system_id: 89dc0398-bc16-421a-9c26-b2a1fd12ede9
       grading_system: architecto
     queryParameters: []
     cleanQueryParameters: []
@@ -305,7 +305,7 @@ endpoints:
         name: 'grade_scales[].is_passing'
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -599,7 +599,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -699,7 +699,7 @@ endpoints:
         name: 'grade_scales[].is_passing'
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -728,7 +728,7 @@ endpoints:
       min_subjects_to_pass: 6
       priority_subjects:
         - yvdljn
-      is_active: false
+      is_active: true
       grade_scales:
         - architecto
     fileParameters: []
@@ -764,7 +764,7 @@ endpoints:
         name: id
         description: 'The ID of the grading system.'
         required: true
-        example: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+        example: 89dc0398-bc16-421a-9c26-b2a1fd12ede9
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -782,7 +782,7 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+      id: 89dc0398-bc16-421a-9c26-b2a1fd12ede9
       grading_system: architecto
     queryParameters: []
     cleanQueryParameters: []
@@ -831,7 +831,7 @@ endpoints:
         name: id
         description: 'The ID of the grading system.'
         required: true
-        example: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+        example: 89dc0398-bc16-421a-9c26-b2a1fd12ede9
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -849,7 +849,7 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: b850ef0f-86e6-4bf6-8a1a-4049a034ae2b
+      id: 89dc0398-bc16-421a-9c26-b2a1fd12ede9
       grading_system: architecto
     queryParameters: []
     cleanQueryParameters: []

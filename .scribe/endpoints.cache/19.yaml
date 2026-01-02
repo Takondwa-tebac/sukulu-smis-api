@@ -89,7 +89,7 @@ endpoints:
         name: start_time
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -111,7 +111,7 @@ endpoints:
         name: type
         description: ''
         required: false
-        example: assembly
+        example: break
         type: string
         enumValues:
           - lesson
@@ -146,9 +146,9 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       name: b
-      start_time: '05:56'
+      start_time: '08:30'
       end_time: '2052-01-26'
-      type: assembly
+      type: break
       sort_order: 39
       is_active: false
     fileParameters: []
@@ -267,7 +267,7 @@ endpoints:
         name: start_time
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
-        example: '05:56'
+        example: '08:30'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -316,7 +316,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -324,11 +324,11 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       name: b
-      start_time: '05:56'
+      start_time: '08:30'
       end_time: '2052-01-26'
       type: assembly
       sort_order: 39
-      is_active: true
+      is_active: false
     fileParameters: []
     responses: []
     responseFields: []
