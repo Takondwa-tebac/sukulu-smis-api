@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Guardian\StoreGuardianRequest;
 use App\Http\Requests\Guardian\UpdateGuardianRequest;
 use App\Http\Resources\Student\GuardianResource;
+use App\Jobs\SendUserWelcomeEmailJob;
 use App\Models\Guardian;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * @group Guardians
@@ -39,9 +44,46 @@ class GuardianController extends Controller
 
     public function store(StoreGuardianRequest $request): JsonResponse
     {
-        $guardian = Guardian::create($request->validated());
+        $validated = $request->validated();
+        $createUserAccount = $validated['create_user_account'] ?? false;
+        $sendWelcomeEmail = $validated['send_welcome_email'] ?? true;
+        
+        // Remove non-guardian fields before creating
+        unset($validated['create_user_account'], $validated['send_welcome_email']);
+        
+        $guardian = DB::transaction(function () use ($validated, $createUserAccount, $sendWelcomeEmail) {
+            $guardian = Guardian::create($validated);
+            
+            // Optionally create a user account for portal access
+            if ($createUserAccount && !empty($validated['email'])) {
+                $temporaryPassword = Str::random(12);
+                
+                $user = User::create([
+                    'first_name' => $validated['first_name'],
+                    'last_name' => $validated['last_name'],
+                    'email' => $validated['email'],
+                    'phone_number' => $validated['phone_primary'] ?? null,
+                    'password' => Hash::make($temporaryPassword),
+                    'school_id' => $guardian->school_id,
+                    'status' => 'active',
+                ]);
+                
+                // Assign parent role
+                $user->assignRole('parent');
+                
+                // Link user to guardian
+                $guardian->update(['user_id' => $user->id]);
+                
+                // Send welcome email with credentials
+                if ($sendWelcomeEmail) {
+                    SendUserWelcomeEmailJob::dispatch($user->id, $temporaryPassword);
+                }
+            }
+            
+            return $guardian;
+        });
 
-        return (new GuardianResource($guardian))
+        return (new GuardianResource($guardian->fresh()))
             ->response()
             ->setStatusCode(201);
     }

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Http\Resources\Users\UserResource;
+use App\Jobs\SendPasswordResetEmailJob;
+use App\Jobs\SendUserWelcomeEmailJob;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -77,6 +79,14 @@ class UserManagementController extends Controller
             if ($role) {
                 $user->assignRole($role);
             }
+        }
+
+        // Send welcome email with credentials via background job
+        if ($validated['send_welcome_email'] ?? true) {
+            SendUserWelcomeEmailJob::dispatch(
+                $user->id,
+                empty($validated['password']) ? $temporaryPassword : null
+            );
         }
 
         return response()->json([
@@ -222,7 +232,10 @@ class UserManagementController extends Controller
             'password' => Hash::make($newPassword),
         ]);
 
-        // TODO: Send password reset notification if notify is true
+        // Send password reset notification via background job if notify is true (default: true)
+        if ($validated['notify'] ?? true) {
+            SendPasswordResetEmailJob::dispatch($user->id, $newPassword);
+        }
 
         return response()->json([
             'message' => 'Password reset successfully.',

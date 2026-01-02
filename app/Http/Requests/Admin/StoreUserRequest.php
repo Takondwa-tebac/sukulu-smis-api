@@ -22,6 +22,7 @@ class StoreUserRequest extends FormRequest
             'school_id' => ['nullable', 'uuid', 'exists:schools,id'],
             'role' => ['required', 'string', 'exists:roles,name'],
             'is_active' => ['boolean'],
+            'send_welcome_email' => ['boolean'],
         ];
     }
 }
