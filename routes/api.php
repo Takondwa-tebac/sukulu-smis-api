@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\V1\AnalyticsController;
 use App\Http\Controllers\Api\V1\Admin\SchoolManagementController;
 use App\Http\Controllers\Api\V1\Admin\UserManagementController;
 use App\Http\Controllers\Api\V1\Admin\RolePermissionController;
+use App\Http\Controllers\Api\V1\Admin\AdminBillingController;
+use App\Http\Controllers\Api\V1\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Api\V1\StudentController;
 use App\Http\Controllers\Api\V1\StudentInvoiceController;
 use App\Http\Controllers\Api\V1\StudentMarkController;
@@ -374,6 +376,25 @@ Route::prefix('v1')->group(function () {
             Route::post('users/{user}/deactivate', [UserManagementController::class, 'deactivate'])->name('users.deactivate');
             Route::post('users/{user}/assign-role', [UserManagementController::class, 'assignRole'])->name('users.assign-role');
             Route::post('users/{user}/reset-password', [UserManagementController::class, 'resetPassword'])->name('users.reset-password');
+
+            // Admin Analytics
+            Route::get('analytics', [AdminAnalyticsController::class, 'index'])->name('analytics.index');
+            Route::get('analytics/dashboard', [AdminAnalyticsController::class, 'dashboard'])->name('analytics.dashboard');
+
+            // Admin Billing (Tenant Invoices)
+            Route::get('billing/stats', [AdminBillingController::class, 'stats'])->name('billing.stats');
+            Route::get('billing/schools/{school}', [AdminBillingController::class, 'schoolBilling'])->name('billing.school');
+            Route::prefix('billing/invoices')->name('billing.invoices.')->group(function () {
+                Route::get('/', [AdminBillingController::class, 'index'])->name('index');
+                Route::post('/', [AdminBillingController::class, 'store'])->name('store');
+                Route::get('{tenant_invoice}', [AdminBillingController::class, 'show'])->name('show');
+                Route::put('{tenant_invoice}', [AdminBillingController::class, 'update'])->name('update');
+                Route::delete('{tenant_invoice}', [AdminBillingController::class, 'destroy'])->name('destroy');
+                Route::post('{tenant_invoice}/send', [AdminBillingController::class, 'send'])->name('send');
+                Route::post('{tenant_invoice}/mark-paid', [AdminBillingController::class, 'markPaid'])->name('mark-paid');
+                Route::post('{tenant_invoice}/void', [AdminBillingController::class, 'void'])->name('void');
+                Route::post('{tenant_invoice}/payments', [AdminBillingController::class, 'recordPayment'])->name('record-payment');
+            });
         });
 
     });
