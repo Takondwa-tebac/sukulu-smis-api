@@ -366,4 +366,38 @@ class AdmissionApplicationController extends Controller
             'data' => new AdmissionApplicationResource($admissionApplication),
         ]);
     }
+
+    /**
+     * Get admission statistics
+     *
+     * Get statistics for admission applications and periods.
+     *
+     * @authenticated
+     * @response 200 scenario="Success" {"total_applications": 150, "pending_review": 25, ...}
+     */
+    public function stats(): JsonResponse
+    {
+        $schoolId = request()->user()->school_id;
+
+        $stats = [
+            'total_applications' => AdmissionApplication::where('school_id', $schoolId)->count(),
+            'pending_review' => AdmissionApplication::where('school_id', $schoolId)
+                ->whereIn('status', ['submitted', 'under_review', 'documents_pending'])
+                ->count(),
+            'approved' => AdmissionApplication::where('school_id', $schoolId)
+                ->where('status', 'approved')
+                ->count(),
+            'rejected' => AdmissionApplication::where('school_id', $schoolId)
+                ->where('status', 'rejected')
+                ->count(),
+            'enrolled' => AdmissionApplication::where('school_id', $schoolId)
+                ->where('status', 'enrolled')
+                ->count(),
+            'active_periods' => AdmissionPeriod::where('school_id', $schoolId)
+                ->where('status', 'open')
+                ->count(),
+        ];
+
+        return response()->json($stats);
+    }
 }

@@ -21,12 +21,24 @@ class UserResource extends JsonResource
             'middle_name' => $this->middle_name,
             'initials' => $this->initials,
             'last_name' => $this->last_name,
+            'name' => trim(($this->first_name ?? '') . ' ' . ($this->last_name ?? '')) ?: $this->username,
             'username' => $this->username,
             'phone_number' => $this->phone_number,
+            'phone' => $this->phone_number,
             'email' => $this->email,
             'cover_photo' => $this->cover_photo,
             'profile_photo' => $this->profile_photo,
+            'avatar_url' => $this->profile_photo,
             'email_verified_at' => $this->email_verified_at,
+            'is_active' => $this->status === 'active',
+            'status' => $this->status,
+            'last_login_at' => $this->last_login_at,
+            'roles' => $this->whenLoaded('roles', fn() => $this->roles->pluck('name')),
+            'school' => $this->whenLoaded('school', fn() => [
+                'id' => $this->school->id,
+                'name' => $this->school->name,
+            ]),
+            'permissions' => $this->whenLoaded('permissions', fn() => $this->permissions->pluck('name')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
@@ -39,11 +51,7 @@ class UserResource extends JsonResource
      */
     public function with($request)
     {
-        return [
-            'links' => [
-                'self' => route('users.show', $this->id),
-            ],
-        ];
+        return [];
     }
 
     /**

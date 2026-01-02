@@ -34,6 +34,7 @@ class User extends Authenticatable implements HasMedia
         'status',
         'last_login_at',
         'email_verified_at',
+        'settings',
     ];
 
     protected $hidden = [
@@ -51,6 +52,7 @@ class User extends Authenticatable implements HasMedia
             'email_verified_at' => 'datetime',
             'last_login_at' => 'datetime',
             'password' => 'hashed',
+            'settings' => 'array',
         ];
     }
 

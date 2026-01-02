@@ -33,6 +33,8 @@ use App\Http\Controllers\Api\V1\StudentPromotionController;
 use App\Http\Controllers\Api\V1\BulkImportController;
 use App\Http\Controllers\Api\V1\FileUploadController;
 use App\Http\Controllers\Api\V1\SchoolSettingsController;
+use App\Http\Controllers\Api\V1\UserSettingsController;
+use App\Http\Controllers\Api\V1\Admin\AdminSubscriptionsController;
 use App\Http\Controllers\Api\V1\DisciplineController;
 use App\Http\Controllers\Api\V1\AuditLogController;
 use App\Http\Controllers\Api\V1\TenantBillingController;
@@ -51,6 +53,34 @@ Route::prefix('v1')->group(function () {
     
     // Public routes (no authentication required)
     Route::post('auth/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('auth/forgot-password', [AuthController::class, 'forgotPassword'])->name('auth.forgot-password');
+    Route::post('auth/reset-password', [AuthController::class, 'resetPassword'])->name('auth.reset-password');
+
+    // TEMPORARY: Test email endpoint (remove after testing)
+    Route::get('test-email/{email}', function (string $email) {
+        $user = \App\Models\User::where('email', $email)->first();
+        
+        if (!$user) {
+            return response()->json(['error' => 'User not found with email: ' . $email], 404);
+        }
+        
+        try {
+            \Illuminate\Support\Facades\Mail::to($user->email)->send(
+                new \App\Mail\UserWelcomeMail($user, 'TestPassword123')
+            );
+            
+            return response()->json([
+                'message' => 'Test email sent successfully!',
+                'sent_to' => $user->email,
+                'user_name' => $user->first_name . ' ' . $user->last_name,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to send email',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    })->name('test-email');
 
     // Protected routes (authentication required)
     Route::middleware(['auth:sanctum', 'school.status'])->group(function () {
@@ -62,6 +92,12 @@ Route::prefix('v1')->group(function () {
             Route::get('me', [AuthController::class, 'me'])->name('me');
             Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
             Route::post('change-password', [AuthController::class, 'changePassword'])->name('change-password');
+        });
+
+        // User Settings
+        Route::prefix('users')->name('users.')->group(function () {
+            Route::get('{user}/settings', [UserSettingsController::class, 'show'])->name('settings.show');
+            Route::put('{user}/settings', [UserSettingsController::class, 'update'])->name('settings.update');
         });
 
         // Grading Systems
@@ -125,6 +161,7 @@ Route::prefix('v1')->group(function () {
 
             // Admission Applications
             Route::prefix('admission-applications')->name('admission-applications.')->group(function () {
+                Route::get('stats', [AdmissionApplicationController::class, 'stats'])->name('stats');
                 Route::post('{admission_application}/submit', [AdmissionApplicationController::class, 'submit'])->name('submit');
                 Route::post('{admission_application}/status', [AdmissionApplicationController::class, 'updateStatus'])->name('update-status');
                 Route::post('{admission_application}/approve', [AdmissionApplicationController::class, 'approve'])->name('approve');
@@ -402,11 +439,16 @@ Route::prefix('v1')->group(function () {
                 Route::delete('{tenant_invoice}', [AdminBillingController::class, 'destroy'])->name('destroy');
                 Route::post('{tenant_invoice}/send', [AdminBillingController::class, 'send'])->name('send');
                 Route::post('{tenant_invoice}/resend', [AdminBillingController::class, 'resend'])->name('resend');
-                Route::get('{tenant_invoice}/download', [AdminBillingController::class, 'downloadPdf'])->name('download');
-                Route::post('{tenant_invoice}/mark-paid', [AdminBillingController::class, 'markPaid'])->name('mark-paid');
-                Route::post('{tenant_invoice}/void', [AdminBillingController::class, 'void'])->name('void');
-                Route::post('{tenant_invoice}/payments', [AdminBillingController::class, 'recordPayment'])->name('record-payment');
+                Route::post('{tenant_invoice}/download', [AdminBillingController::class, 'downloadPdf'])->name('download');
+                Route::post('{tenant_invoice}/record-payment', [AdminBillingController::class, 'recordPayment'])->name('record-payment');
             });
+
+            // Admin Subscriptions
+            Route::get('subscriptions/stats', [AdminSubscriptionsController::class, 'stats'])->name('subscriptions.stats');
+            Route::get('subscriptions', [AdminSubscriptionsController::class, 'index'])->name('subscriptions.index');
+            Route::get('subscriptions/{school}', [AdminSubscriptionsController::class, 'show'])->name('subscriptions.show');
+            Route::put('subscriptions/{school}', [AdminSubscriptionsController::class, 'update'])->name('subscriptions.update');
+            Route::post('subscriptions/{school}/extend', [AdminSubscriptionsController::class, 'extend'])->name('subscriptions.extend');
         });
 
     });

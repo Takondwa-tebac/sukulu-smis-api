@@ -96,13 +96,15 @@ class UserManagementController extends Controller
         ], 201);
     }
 
-    public function show(User $user): UserResource
+    public function show(string $user): UserResource
     {
+        $user = User::withoutGlobalScopes()->findOrFail($user);
         return new UserResource($user->load(['roles', 'school', 'permissions']));
     }
 
-    public function update(UpdateUserRequest $request, User $user): UserResource
+    public function update(UpdateUserRequest $request, string $user): UserResource
     {
+        $user = User::withoutGlobalScopes()->findOrFail($user);
         $validated = $request->validated();
 
         $updateData = collect($validated)->except(['role', 'password'])->toArray();
@@ -120,8 +122,9 @@ class UserManagementController extends Controller
         return new UserResource($user->load('roles'));
     }
 
-    public function destroy(User $user): JsonResponse
+    public function destroy(string $user): JsonResponse
     {
+        $user = User::withoutGlobalScopes()->findOrFail($user);
         if ($user->hasRole('super-admin')) {
             return response()->json(['message' => 'Cannot delete super-admin users.'], 422);
         }
@@ -131,8 +134,9 @@ class UserManagementController extends Controller
         return response()->json(['message' => 'User deleted successfully.']);
     }
 
-    public function activate(User $user): JsonResponse
+    public function activate(string $user): JsonResponse
     {
+        $user = User::withoutGlobalScopes()->findOrFail($user);
         $user->update(['is_active' => true]);
 
         return response()->json([
@@ -141,8 +145,9 @@ class UserManagementController extends Controller
         ]);
     }
 
-    public function deactivate(User $user): JsonResponse
+    public function deactivate(string $user): JsonResponse
     {
+        $user = User::withoutGlobalScopes()->findOrFail($user);
         if ($user->hasRole('super-admin')) {
             return response()->json(['message' => 'Cannot deactivate super-admin users.'], 422);
         }
@@ -155,8 +160,9 @@ class UserManagementController extends Controller
         ]);
     }
 
-    public function assignRole(Request $request, User $user): JsonResponse
+    public function assignRole(Request $request, string $user): JsonResponse
     {
+        $user = User::withoutGlobalScopes()->findOrFail($user);
         $request->validate([
             'role' => ['required', 'string', 'exists:roles,name'],
         ]);
@@ -219,8 +225,9 @@ class UserManagementController extends Controller
      *
      * @response 200 scenario="Success" {"message": "Password reset successfully.", "temporary_password": "abc123"}
      */
-    public function resetPassword(Request $request, User $user): JsonResponse
+    public function resetPassword(Request $request, string $user): JsonResponse
     {
+        $user = User::withoutGlobalScopes()->findOrFail($user);
         $validated = $request->validate([
             'password' => ['nullable', 'string', 'min:8'],
             'notify' => ['boolean'],
