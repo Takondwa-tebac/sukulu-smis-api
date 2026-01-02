@@ -35,6 +35,7 @@ use App\Http\Controllers\Api\V1\FileUploadController;
 use App\Http\Controllers\Api\V1\SchoolSettingsController;
 use App\Http\Controllers\Api\V1\DisciplineController;
 use App\Http\Controllers\Api\V1\AuditLogController;
+use App\Http\Controllers\Api\V1\TenantBillingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -352,6 +353,15 @@ Route::prefix('v1')->group(function () {
             Route::get('model-history', [AuditLogController::class, 'modelHistory'])->name('model-history');
         });
 
+        // School Billing (Tenant-facing - for school admins to view their invoices)
+        Route::prefix('billing')->name('billing.')->group(function () {
+            Route::get('summary', [TenantBillingController::class, 'summary'])->name('summary');
+            Route::get('invoices', [TenantBillingController::class, 'index'])->name('invoices.index');
+            Route::get('invoices/{tenant_invoice}', [TenantBillingController::class, 'show'])->name('invoices.show');
+            Route::get('invoices/{tenant_invoice}/download', [TenantBillingController::class, 'downloadPdf'])->name('invoices.download');
+            Route::get('payments', [TenantBillingController::class, 'payments'])->name('payments.index');
+        });
+
         // Super Admin Routes (school management, user management)
         Route::prefix('admin')->name('admin.')->middleware('role:super-admin')->group(function () {
             // School Management
@@ -391,6 +401,8 @@ Route::prefix('v1')->group(function () {
                 Route::put('{tenant_invoice}', [AdminBillingController::class, 'update'])->name('update');
                 Route::delete('{tenant_invoice}', [AdminBillingController::class, 'destroy'])->name('destroy');
                 Route::post('{tenant_invoice}/send', [AdminBillingController::class, 'send'])->name('send');
+                Route::post('{tenant_invoice}/resend', [AdminBillingController::class, 'resend'])->name('resend');
+                Route::get('{tenant_invoice}/download', [AdminBillingController::class, 'downloadPdf'])->name('download');
                 Route::post('{tenant_invoice}/mark-paid', [AdminBillingController::class, 'markPaid'])->name('mark-paid');
                 Route::post('{tenant_invoice}/void', [AdminBillingController::class, 'void'])->name('void');
                 Route::post('{tenant_invoice}/payments', [AdminBillingController::class, 'recordPayment'])->name('record-payment');

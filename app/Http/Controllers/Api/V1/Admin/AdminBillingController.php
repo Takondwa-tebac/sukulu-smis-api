@@ -8,10 +8,12 @@ use App\Http\Requests\Admin\StoreTenantInvoiceRequest;
 use App\Http\Requests\Admin\UpdateTenantInvoiceRequest;
 use App\Http\Resources\Admin\TenantInvoiceResource;
 use App\Http\Resources\Admin\TenantPaymentResource;
+use App\Jobs\SendTenantInvoiceJob;
 use App\Models\School;
 use App\Models\TenantInvoice;
 use App\Models\TenantInvoiceItem;
 use App\Models\TenantPayment;
+use App\Services\TenantInvoicePdfService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -183,7 +185,7 @@ class AdminBillingController extends Controller
     /**
      * Send a tenant invoice
      *
-     * Mark invoice as sent and optionally email to school.
+     * Mark invoice as sent and email to school with PDF attachment.
      *
      * @authenticated
      */
@@ -200,10 +202,53 @@ class AdminBillingController extends Controller
             'sent_at' => now(),
         ]);
 
-        // TODO: Dispatch email job to send invoice to school
+        // Dispatch job to generate PDF and send email
+        SendTenantInvoiceJob::dispatch($tenantInvoice->id);
 
         return response()->json([
-            'message' => 'Invoice sent successfully.',
+            'message' => 'Invoice sent successfully. Email will be delivered shortly.',
+            'data' => new TenantInvoiceResource($tenantInvoice),
+        ]);
+    }
+
+    /**
+     * Download invoice PDF
+     *
+     * Generate and download the invoice as a PDF.
+     *
+     * @authenticated
+     */
+    public function downloadPdf(TenantInvoice $tenantInvoice, TenantInvoicePdfService $pdfService)
+    {
+        return $pdfService->download($tenantInvoice);
+    }
+
+    /**
+     * Resend invoice email
+     *
+     * Resend the invoice email to the school.
+     *
+     * @authenticated
+     */
+    public function resend(TenantInvoice $tenantInvoice): JsonResponse
+    {
+        if ($tenantInvoice->status === TenantInvoice::STATUS_DRAFT) {
+            return response()->json([
+                'message' => 'Cannot resend a draft invoice. Please send it first.',
+            ], 422);
+        }
+
+        if ($tenantInvoice->status === TenantInvoice::STATUS_VOID) {
+            return response()->json([
+                'message' => 'Cannot resend a voided invoice.',
+            ], 422);
+        }
+
+        // Dispatch job to generate PDF and send email
+        SendTenantInvoiceJob::dispatch($tenantInvoice->id);
+
+        return response()->json([
+            'message' => 'Invoice email queued for delivery.',
             'data' => new TenantInvoiceResource($tenantInvoice),
         ]);
     }
